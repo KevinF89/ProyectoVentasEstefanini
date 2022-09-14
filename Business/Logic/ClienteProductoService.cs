@@ -10,7 +10,7 @@ using System.Data.Entity;
 
 namespace Business.Logic
 {
-    public class ClienteProductoProductoService
+    public class ClienteProductoService
     {
         private static Context context = new Context();
         private readonly BaseRepository<ClienteProducto> repositoryClienteProducto = new BaseRepository<ClienteProducto>(context);
@@ -51,7 +51,7 @@ namespace Business.Logic
 
         public async Task<List<ClienteProducto>> GetAsync(int? clienteProductoID = null, int? clienteID = null, int? productoID = null, int? medioDePagoID = null, bool includeData = false, bool tracking = false)
         {
-            List<ClienteProducto> pagedList = await this.Query(clienteProductoID: clienteProductoID, clienteID: clienteID, productoID: productoID, medioDePagoID: medioDePagoID, includeData: includeData, tracking: tracking).ToListAsync();
+            List<ClienteProducto> pagedList = this.Query(clienteProductoID: clienteProductoID, clienteID: clienteID, productoID: productoID, medioDePagoID: medioDePagoID, includeData: includeData, tracking: tracking).ToList();
 
             return pagedList;
         }

@@ -17,7 +17,7 @@ namespace Business.Logic
 
         public async Task<List<TipoDocumento>> GetAsync(int? tipoDocumentoID = null, string nombre = null, string abreviatura = null, bool tracking = false)
         {
-            List<TipoDocumento> pagedList = await this.Query(tipoDocumentoID: tipoDocumentoID, nombre: nombre, abreviatura: abreviatura, tracking: tracking).ToListAsync();
+            List<TipoDocumento> pagedList = this.Query(tipoDocumentoID: tipoDocumentoID, nombre: nombre, abreviatura: abreviatura, tracking: tracking).ToList();
 
             return pagedList;
         }

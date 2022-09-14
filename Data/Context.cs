@@ -30,7 +30,7 @@ namespace Data
             builder.AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json"));
 
             var root = builder.Build();
-            var sampleConnectionString = root.GetConnectionString("Gestionconn");
+            var sampleConnectionString = root.GetConnectionString("Apiconn");
             return sampleConnectionString;
         }
 

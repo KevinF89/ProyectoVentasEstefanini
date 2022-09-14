@@ -8,43 +8,43 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http.Description;
 using WebApi.MappingExtensions;
-using WebApi.Models.Cliente;
+using WebApi.Models.Producto;
 
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class ClienteController : ControllerBase
+    public class ProductoController : ControllerBase
     {
-        private ClienteService clienteService = new ClienteService();
+        private ProductoService productoService = new ProductoService();
 
-        [ResponseType(typeof(Models.Cliente.UpdateCliente))]
+        [ResponseType(typeof(Models.Producto.UpdateProducto))]
         [HttpGet]
-        public async Task<ActionResult> Get([FromQuery] FilterCliente filter)
+        public async Task<ActionResult> Get([FromQuery] FilterProducto filter)
         {
-            List<Cliente> result = await this.clienteService.GetAsync(document: filter.Documento, clienteID: filter.ClienteID, documentTypeID: filter.TipoDocumentoID);
+            List<Producto> result = await this.productoService.GetAsync(productoID: filter.ProductoID, nombre: filter.Nombre);
 
             return this.Ok(
-                new 
+                new
                 {
                     Data = result.ToListModels()
                 });
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] CreateCliente model)
+        public ActionResult Post([FromBody] CreateProducto model)
         {
             if (ModelState.IsValid)
             {
-                Cliente inserResult = this.clienteService.InsertClienteAsync(model.ToEntity()).Result;
+                Producto inserResult = this.productoService.InsertProductoAsync(model.ToEntity()).Result;
 
 
                 return this.Ok(
                     new
                     {
                         Data = inserResult.ToModel()
-                    }) ;
+                    });
             }
             else
             {
@@ -53,15 +53,15 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        public ActionResult Put([FromBody] UpdateCliente model)
+        public ActionResult Put([FromBody] UpdateProducto model)
         {
             if (ModelState.IsValid)
             {
-                Cliente updateResult = this.clienteService.UpdateClienteAsync(model.ToEntity()).Result;
+                Producto updateResult = this.productoService.UpdateProductoAsync(model.ToEntity()).Result;
 
 
                 return this.Ok(
-                    new 
+                    new
                     {
                         Data = updateResult,
                     });
@@ -73,15 +73,15 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete]
-        public ActionResult Delete(int clienteId)
+        public ActionResult Delete(int productoId)
         {
             if (ModelState.IsValid)
             {
-                bool updateResult = this.clienteService.DeleteclienteAsync(clienteID: clienteId).Result;
+                bool updateResult = this.productoService.DeleteproductoAsync(productoID: productoId).Result;
 
 
                 return this.Ok(
-                    new 
+                    new
                     {
                         Data = updateResult
                     });

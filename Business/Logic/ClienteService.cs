@@ -50,7 +50,7 @@ namespace Business.Logic
 
         public async Task<List<Cliente>> GetAsync(int? clienteID = null, int? documentTypeID = null, string document = null, bool tracking = false)
         {
-            List<Cliente> pagedList = await this.Query(clienteID: clienteID, documentTypeID: documentTypeID, document: document, tracking: tracking).ToListAsync();
+            List<Cliente> pagedList =  this.Query(clienteID: clienteID, documentTypeID: documentTypeID, document: document, tracking: tracking).ToList();
 
             return pagedList;
         }
