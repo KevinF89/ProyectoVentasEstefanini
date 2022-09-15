@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Data.Entities
@@ -15,6 +16,7 @@ namespace Data.Entities
         public string Documento { get; set; }
         public string Celular { get; set; }
         public string Correo { get; set; }
+        [ForeignKey("TipoDocumentoID")]
         public virtual TipoDocumento TipoDocumento { get; set; }
         public virtual IEnumerable<ClienteProducto> ClienteProductos { get; set; }
     }

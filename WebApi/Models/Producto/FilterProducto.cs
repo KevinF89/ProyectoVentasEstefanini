@@ -7,7 +7,7 @@ namespace WebApi.Models.Producto
 {
     public class FilterProducto
     {
-        public int ProductoID { get; set; }
+        public int? ProductoID { get; set; }
         public string Nombre { get; set; }
     }
 }
